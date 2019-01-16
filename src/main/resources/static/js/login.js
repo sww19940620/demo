@@ -14,16 +14,16 @@ function login()
     params.userName = username;
     params.password = password;
 
-
     $.ajax({
-        type: "POST",
-        url: "localhost:8080/login/check",
-        dataType: "jsonp",
-        contentType: "application/json; charset=utf-8",
-        data: params,
+        url: "/login/check",
+        type: 'POST',
+        dataType: "json",
+        contentType: 'application/json',
+        data: JSON.stringify(params),
         success: function (data) {
-            if(data.result===0) {
-                alert("用户名和密码正确");
+            console.log(data);
+            if(data===0) {
+                window.location.href='Timetable.html';
             }
            else{
                 alert("用户名和密码错误");
