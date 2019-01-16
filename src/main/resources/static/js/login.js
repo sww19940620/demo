@@ -23,6 +23,7 @@ function login()
         success: function (data) {
             console.log(data);
             if(data===0) {
+                sessionStorage.setItem("userName",username);
                 window.location.href='Timetable.html';
             }
            else{
