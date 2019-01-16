@@ -113,6 +113,31 @@ var courseList = [
 ['', '', '数据结构与算法分析', '数据结构与算法分析', '', '', '', '', '信号与系统', '信号与系统', '', ''],
 ['大学英语(Ⅳ)@10203', '大学英语(Ⅳ)@10203', '', '', '', '', '毛概@14208', '毛概@14208', '', '', '', '选修']
 ];
+
+window.onload=function () {
+
+    var userName =sessionStorage.getItem("userName");
+
+    $.ajax({
+        url: "/TimeTables/get?userName="+userName,
+        type: 'GET',
+        dataType: "json",
+        contentType: 'application/json',
+        success: function (data) {
+            console.log(data);
+            if(data===0) {
+                window.location.href='Timetable.html';
+            }
+            else{
+                alert("用户名和密码错误");
+            }
+        },
+        error: function (data) {
+        }
+    });
+};
+
+
 var week = window.innerWidth > 360 ? ['周一', '周二', '周三', '周四', '周五','周六','周日'] :
 ['一', '二', '三', '四', '五','六','七'];
 var day = new Date().getDay();
