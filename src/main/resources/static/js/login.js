@@ -24,6 +24,19 @@ function login()
             console.log(data);
             if(data===0) {
                 sessionStorage.setItem("userName",username);
+
+
+                $.ajax({
+                    url: "/TimeTables/get?userName="+username,
+                    type: 'GET',
+                    success: function (data) {
+                        console.log(data);
+                        sessionStorage.setItem("courese",data);
+                    },
+                    error: function (data) {
+                    }
+                });
+
                 window.location.href='Timetable.html';
             }
            else{
