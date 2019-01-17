@@ -6,7 +6,7 @@
 <title>课表</title>
 
 <script src="js/Timetables.min.js"></script>
-
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 <style>
 	#coursesTable {
 		padding: 15px 10px;
@@ -105,37 +105,17 @@
 <div id="coursesTable"></div>
 
 <script>
-var courseList = [
+var as = [
 ['大学英语(Ⅳ)@10203', '大学英语(Ⅳ)@10203', '', '', '', '', '毛概@14208', '毛概@14208', '', '', '', '选修'],
 ['', '', '信号与系统@11302', '信号与系统@11302', '模拟电子技术基础@16204', '模拟电子技术基础@16204', '', '', '', '', '', ''],
-['大学体育(Ⅳ)', '大学体育(Ⅳ)', '形势与政策(Ⅳ)@15208', '形势与政策(Ⅳ)@15208', '', '', '电路、信号与系统实验', '电路、信号与系统实验', '', '', '', ''],
+['大学体育(Ⅳ)' '大学体育(Ⅳ)', '形势与政策(Ⅳ)@15208', '形势与政策(Ⅳ)@15208', '', '', '电路、信号与系统实验', '电路、信号与系统实验', '', '', '', ''],
 ['', '', '', '', '电装实习@11301', '电装实习@11301', '', '', '', '大学体育', '大学体育', ''],
 ['', '', '数据结构与算法分析', '数据结构与算法分析', '', '', '', '', '信号与系统', '信号与系统', '', ''],
 ['大学英语(Ⅳ)@10203', '大学英语(Ⅳ)@10203', '', '', '', '', '毛概@14208', '毛概@14208', '', '', '', '选修']
 ];
 
-window.onload=function () {
+var courseList = sessionStorage.getItem("courese");
 
-    var userName =sessionStorage.getItem("userName");
-
-    $.ajax({
-        url: "/TimeTables/get?userName="+userName,
-        type: 'GET',
-        dataType: "json",
-        contentType: 'application/json',
-        success: function (data) {
-            console.log(data);
-            if(data===0) {
-                window.location.href='Timetable.html';
-            }
-            else{
-                alert("用户名和密码错误");
-            }
-        },
-        error: function (data) {
-        }
-    });
-};
 
 
 var week = window.innerWidth > 360 ? ['周一', '周二', '周三', '周四', '周五','周六','周日'] :
